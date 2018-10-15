@@ -3,7 +3,11 @@ ini_set('default_charset', 'utf-8');
 class Database{
  
     // specify your own database credentials
- // fjernet //
+    private $host = "localhost";
+    private $db_name = "kaerkis";
+    private $username = "root";
+    private $password = "";
+    public $conn;
  
     // get the database connection
     public function getConnection(){

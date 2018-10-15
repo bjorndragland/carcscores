@@ -1,0 +1,10 @@
+
+
+
+
+POST http://localhost/bjornagain/kaerkis/omgang/create.php HTTP/1.1
+content-type: application/json
+
+{
+    "OmgangID": "NULL"
+}

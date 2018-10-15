@@ -3,7 +3,7 @@ ini_set('default_charset', 'utf-8');
 class Database{
  
     // specify your own database credentials
- // fjernet
+ // fjernet //
  
     // get the database connection
     public function getConnection(){

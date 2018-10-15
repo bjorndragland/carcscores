@@ -9,10 +9,10 @@ class resultat
     private $table_name = "resultat";
  
     // spiller attributter
-    public $resultatID;
-    public $omgangRef;
-    public $spillerRef;
-    public $omgang;
+    public $ResultatID;
+    public $ResOmgangRef;
+    public $ResSpillerRef;
+    public $ResPoeng;
 
 
     // constructor with $db as database connection
@@ -39,11 +39,36 @@ class resultat
     }
 
 
-
+// ****************** SKRIV OM *****************
 // opprett spillresultat
     function create()
     {
-
+        // query
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+             SET
+             ResultatID=:ResultatID, ResOmgRef=:ResOmgRef, ResSpillerRef=:ResSpillerRef, ResPoeng=:ResPoeng";
+  
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+     
+        // sanitize
+        $this->ResultatID = htmlspecialchars(strip_tags($this->ResultatID));
+        $this->ResOmgRef = htmlspecialchars(strip_tags($this->ResOmgRef));
+        $this->ResSpillerRef = htmlspecialchars(strip_tags($this->ResSpillerRef));
+        $this->ResPoeng = htmlspecialchars(strip_tags($this->ResPoeng));
+     
+        // bind values
+        $stmt->bindParam(":ResultatID", $this->ResultatID);
+        $stmt->bindParam(":ResOmgRef", $this->ResOmgRef);
+        $stmt->bindParam(":ResSpillerRef", $this->ResSpillerRef);
+        $stmt->bindParam(":ResPoeng", $this->ResPoeng);
+     
+        // execute query
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
 // oppdater spillresultat

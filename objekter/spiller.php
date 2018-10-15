@@ -16,7 +16,7 @@ class spiller
         $this->conn = $db;
     }
 
-// les spillere
+   // les spillere
     function read()
     {
     // select all query

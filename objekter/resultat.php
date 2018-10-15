@@ -1,5 +1,4 @@
 <?php
-// kopiert fra API_tester
 header('Content-Type: text/html; charset=utf-8');
 
 class resultat

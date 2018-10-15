@@ -1,6 +1,4 @@
 <?php
-// kopiert fra API_tester
-// spillresultater.create
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -21,7 +19,6 @@ $resultat = new resultat($db);
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-
 
 // set product property values
 $resultat->ResultatID = $data->ResultatID;

@@ -38,8 +38,6 @@ class resultat
         return $stmt;
     }
 
-
-// ****************** SKRIV OM *****************
 // opprett spillresultat
     function create()
     {
@@ -47,7 +45,8 @@ class resultat
         $query = "INSERT INTO
                     " . $this->table_name . "
              SET
-             ResultatID=:ResultatID, ResOmgRef=:ResOmgRef, ResSpillerRef=:ResSpillerRef, ResPoeng=:ResPoeng";
+             ResultatID=:ResultatID, ResOmgRef=:ResOmgRef,
+             ResSpillerRef=:ResSpillerRef, ResPoeng=:ResPoeng";
   
         // prepare query
         $stmt = $this->conn->prepare($query);

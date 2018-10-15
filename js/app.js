@@ -24,7 +24,7 @@ var app1 = new Vue({
 
         createSpillerViaREST: function (spillerNew) {
             axios.post("http://localhost/bjornagain/carcscores/carcscores/spiller/create.php", {
-                SpillerFornavn: spillerNew.SpillerFornavn,
+                SpillerFornavn: spillerNew.SpillerFornavn
             })
         },
 
@@ -35,7 +35,7 @@ var app1 = new Vue({
 
         createOmgangViaREST: function (omgangNew) {
             axios.post("http://localhost/bjornagain/carcscores/carcscores/omgang/create.php", {
-                OmgangID: omgangNew.OmgangID,
+                OmgangID: omgangNew.OmgangID
             })
         },
 
@@ -45,8 +45,11 @@ var app1 = new Vue({
             //.then(response => console.log(response.data.resultat))
         },
 
-        createResultaterViaREST: function () {
-
+        createResultatViaREST: function (resultatNew) {
+            axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/create.php", {
+                ResultatID: resultatNew.ResultatID, ResOmgRef: resultatNew.ResOmgRef,
+                ResSpillerRef: resultatNew.ResSpillerRef, ResPoeng: resultatNew.ResPoeng
+            })
         }
     }
 }

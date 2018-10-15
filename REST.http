@@ -1,10 +1,10 @@
 
-
-
-
-POST http://localhost/bjornagain/carcscores/carcscores/omgang/create.php HTTP/1.1
+POST http://localhost/bjornagain/carcscores/carcscores/resultat/create.php HTTP/1.1
 content-type: application/json
 
 {
-    "OmgangID": "NULL"
+    "ResultatID": "NULL",
+    "ResOmgRef":"106",
+    "ResSpillerRef":"3",
+    "ResPoeng":"163"
 }

@@ -1,5 +1,5 @@
 var app1 = new Vue({
-    el: "#app-1",
+    el: "#app-carc",
 
     data: {
         spiller: [],

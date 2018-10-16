@@ -5,8 +5,8 @@ var app1 = new Vue({
         spiller: [],
         resultat: [],
         spillerNew: {
-
-        }
+        },
+        showingAddModal: false
     },
 
     created:

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 900px;
+            margin: auto;
+            margin-top: 44px;
+        }
+
+        .fleft {
+            float: left;
+        }
+
+        .fright {
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+
+        .addNew {
+            padding: 2px 9px;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .modalContainer {
+            width: 555px;
+            background: white;
+            margin: auto;
+            margin-top: 44px;
+        }
+
+        .modalHeading {
+            padding: 6px;
+            background: rgb(123, 130, 143);
+            color: white;
+        }
+
+        .modalContent {
+            min-height: 333px;
+            padding: 44px;
+        }
+
+        .close {
+            background: red;
+            padding: 3px 9px;
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+        <div class="container">
+            <h1 class="fleft">Liste</h1>
+            <button class="fright addNew" @click="showingAddModal = true">Ny</button>
+            <div class="clear"></div>
+            <hr>
+        </div>
+
+        <div id="id01" class="modal" v-if="showingAddModal">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Modal Heading</p>
+                    <button class="fright close" @click="showingAddModal = false">X</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+                    <table class="form">
+                        <tr>
+                            <th>input</th>
+                            <th>:</th>
+                            <th><input type="text" name=""></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            el: "#root",
+            data: {
+                showingAddModal: false
+            },
+            methods: {
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>

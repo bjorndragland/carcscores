@@ -11,7 +11,24 @@
 </head>
 
 <body>
+
     <div id="app-carc">
+        <div id="id01" class="modal" v-if="showingAddModal">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Modal Heading</p>
+                    <button class="fright close" @click="showingAddModal = false">X</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+                    <div v-for="spiller in spiller">
+                        <label for="poeng"><b>{{ spiller.SpillerFornavn }}</b></label>
+                        <input type="text" name="poeng">
+                    </div>
+                    <button class="addResultat">Legg til</button>
+                </div>
+            </div>
+        </div>
         <table>
             <tr>
                 <th>spiller ID</th>
@@ -37,6 +54,10 @@
                 <td>{{ resultat.ResPoeng }}</td>
             </tr>
         </table>
+        <hr>
+        <button class="but" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
+
+        <div class="clear"></div>
     </div>
     <script src="../carcscores/js/app.js"></script>
 </body>

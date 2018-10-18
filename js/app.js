@@ -5,6 +5,7 @@ var app1 = new Vue({
         spiller: [],
         resultat: [],
         nyeresultat: [],
+        nesteOmgangID: 0,
         spillerNew: {
         },
         showingAddModal: false
@@ -13,7 +14,8 @@ var app1 = new Vue({
     created:
         function () {
             this.readSpillerViaREST();
-            this.readResultatViaREST()
+            this.readResultatViaREST();
+            this.readLastOmgangIDVIaREST()
         },
 
     methods: {
@@ -54,12 +56,16 @@ var app1 = new Vue({
             })
         },
         inputOmgangResults: function (event) {
-            //for () {
-            alert("tjobing");
-            console.log(this.spiller);
-            //}
-        }
+
+        },
+
+        readLastOmgangIDVIaREST: function () {
+            axios.get("http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php")
+                .then(response => { this.nesteOmgangID = (parseInt(response.data.OmgangID) + 1) })
+            //.then(response => console.log(response.data.OmgangID ))
+        },
     }
+
 }
 
 );

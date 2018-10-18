@@ -36,6 +36,23 @@ class omgang
         return $stmt;
     }
 
+    function readLastID()
+    {
+        $query = "SELECT
+            OmgangID
+        FROM
+            omgang
+        order by OmgangID desc
+        limit 1";
+        
+    // prepare query statement
+        $stmt = $this->conn->prepare($query);
+ 
+    // execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
 // opprett spillomgang
     function create()
     {

@@ -1,0 +1,20 @@
+
+database: kaerkis
+
+table: omgang
+OmgangID: int(11),
+OmgangOpprettet: datetime,
+OmgangBesk: varchar(150),
+OmgangDato: datetime
+
+table: resultat
+ResultatID: int(11),
+ResOmgRef: int(11),
+ResSpillerRef: int(11),
+ResPoeng: int(11),
+ResOpprettet: datetime
+
+table: spiller
+SpillerID: int(11),
+SpillerFornavn: varchar(50),
+SpillerOpprettet: datetime

@@ -16,16 +16,33 @@
         <div id="id01" class="modal" v-if="showingAddModal">
             <div class="modalContainer">
                 <div class="modalHeading">
-                    <p class="fleft">Modal Heading</p>
+                    <p class="fleft">Registrer resultater</p>
                     <button class="fright close" @click="showingAddModal = false">X</button>
                     <div class="clear"></div>
                 </div>
                 <div class="modalContent">
-                    <div v-for="spiller in spiller">
-                        <label for="poeng"><b>{{ spiller.SpillerFornavn }}</b></label>
-                        <input type="text" name="poeng">
+                    <div class="inputDiv">
+                        <label for="OmgDato" class="fleft"><b>Dato</b></label>
+                        <input type="date" name="OmgDato" class="fright inputDate">
+                        <div class="clear"></div>
                     </div>
-                    <button class="addResultat">Legg til</button>
+                    <hr>
+                    <div class="inputDiv" v-for="spiller in spiller">
+                        <label for="poeng" class="fleft"><b>{{ spiller.SpillerFornavn }}</b></label>
+                        <input type="text" name="poeng" class="fright inputPoints">
+                        <div class="clear"></div>
+                    </div>
+                    <hr>
+                    <!--
+                    <div class="inputDiv">
+                        <label for="OmgDesc" class="fleft"><b>Beskrivelse</b></label>
+
+                    <textarea class="inputArea frigth" name="OmgDesc"></textarea>
+                    <div class="clear"></div>
+                </div>
+                <hr>-->
+                    <button class="buttonEnter" @click="inputOmgangResults">Legg til</button>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>

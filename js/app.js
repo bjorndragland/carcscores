@@ -4,6 +4,7 @@ var app1 = new Vue({
     data: {
         spiller: [],
         resultat: [],
+        nyeresultat: [],
         spillerNew: {
         },
         showingAddModal: false
@@ -20,6 +21,7 @@ var app1 = new Vue({
             axios.get("http://localhost/bjornagain/carcscores/carcscores/spiller/read.php")
                 .then(response => { this.spiller = response.data.spiller })
             // .then(response => console.log(response))
+            //.then(response =>  console.log(this.spiller))
         },
 
         createSpillerViaREST: function (spillerNew) {
@@ -50,6 +52,12 @@ var app1 = new Vue({
                 ResultatID: resultatNew.ResultatID, ResOmgRef: resultatNew.ResOmgRef,
                 ResSpillerRef: resultatNew.ResSpillerRef, ResPoeng: resultatNew.ResPoeng
             })
+        },
+        inputOmgangResults: function (event) {
+            //for () {
+            alert("tjobing");
+            console.log(this.spiller);
+            //}
         }
     }
 }

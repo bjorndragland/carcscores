@@ -69,6 +69,20 @@ class resultat
         return false;
     }
 
+
+    function createMultiple()
+    {
+        $query = "INSERT INTO
+            resultat
+            (ResultatID, ResOmgRef, ResSpillerRef, ResPoeng)
+        VALUES
+            (),
+            (),
+            ()";
+
+    }
+
+
 // oppdater spillresultat
     function update()
     {

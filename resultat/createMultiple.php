@@ -27,7 +27,7 @@ $resultat->ResSpillerRef = $data->ResSpillerRef;
 $resultat->ResPoeng = $data->ResPoeng;
 
 // opprett omgangen
-if($resultat->create()){
+if($resultat->createMultiple()){
     echo '{';
         echo '"message": "resultat was created."';
     echo '}';

@@ -1,5 +1,0 @@
-
-GET http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php HTTP/1.1
-content-type: application/json
-
-

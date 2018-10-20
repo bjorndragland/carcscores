@@ -1,0 +1,93 @@
+### omgang read
+GET http://localhost/bjornagain/carcscores/carcscores/omgang/read.php HTTP/1.1
+content-type: application/json
+
+### omgang read last ID
+GET http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php HTTP/1.1
+content-type: application/json
+
+
+### omgang create
+POST http://localhost/bjornagain/carcscores/carcscores/omgang/create.php HTTP/1.1
+content-type: application/json
+{
+    "OmgangID": "NULL"
+}
+
+### resultat read
+
+
+
+### resultat create
+POST http://localhost/bjornagain/carcscores/carcscores/resultat/create.php HTTP/1.1
+content-type: application/json
+{
+    "ResultatID": "NULL",
+    "ResOmgRef":"109",
+    "ResSpillerRef":"3",
+    "ResPoeng":"163"
+}
+
+
+### resultat create multiple
+### virker ikke, under arbeid
+POST http://localhost/bjornagain/carcscores/carcscores/resultat/createMultiple.php HTTP/1.1
+content-type: application/json
+[
+    {
+        "ResultatID": "NULL",
+        "ResOmgRef":"107",
+        "ResSpillerRef":"3",
+        "ResPoeng":"163"
+    },
+    {
+        "ResultatID": "NULL",
+        "ResOmgRef":"107",
+        "ResSpillerRef":"1",
+        "ResPoeng":"124"
+    },
+    {
+        "ResultatID": "NULL",
+        "ResOmgRef":"107",
+        "ResSpillerRef":"5",
+        "ResPoeng":"171"
+    }
+]
+
+
+
+### spiller create
+POST http://localhost/bjornagain/carcscores/carcscores/spiller/create.php HTTP/1.1
+content-type: application/json
+{
+    "SpillerID": "NULL",
+    "SpillerFornavn":"Testersen"
+}
+
+
+
+
+### ************************ testing *******************************
+POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
+content-type: application/json
+
+{
+"understandID": "101"
+}
+
+###
+POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
+content-type: application/json
+    {
+    "understands": [{
+        "understandID": "101"
+        }, {
+        "understandID": "102"
+        }, {
+        "understandID": "106"
+        }, {
+        "understandID": "107"
+        }, {
+        "understandID": "108"
+  }]
+}

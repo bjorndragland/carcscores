@@ -17,13 +17,11 @@ $understandobj = new understandobj();
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$understandobj->understandID = $data->understandID;
-
-
-// opprett omgangen
-$understandobj->createunderstand()
-
 // set product property values
-//$spiller->SpillerFornavn = $data->SpillerFornavn;
-//echo $data;
+//$understandobj->understandID = $data->understandID;
+//$understandobj->understandSoup = $data->understandSoup;
+
+//echo $understandobj->understandSoup;
+$understandobj->createunderstand($data);
+
 ?>

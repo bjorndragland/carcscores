@@ -2,6 +2,7 @@
 GET http://localhost/bjornagain/carcscores/carcscores/omgang/read.php HTTP/1.1
 content-type: application/json
 
+
 ### omgang read last ID
 GET http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php HTTP/1.1
 content-type: application/json
@@ -13,6 +14,7 @@ content-type: application/json
 {
     "OmgangID": "NULL"
 }
+
 
 ### resultat read
 
@@ -55,7 +57,6 @@ content-type: application/json
 ]
 
 
-
 ### spiller create
 POST http://localhost/bjornagain/carcscores/carcscores/spiller/create.php HTTP/1.1
 content-type: application/json
@@ -66,18 +67,26 @@ content-type: application/json
 
 
 
-
 ### ************************ testing *******************************
+### understand read
+GET http://localhost/bjornagain/carcscores/carcscores/understand/readunderstand.php HTTP/1.1
+content-type: application/json
+
+
+### understand create
 POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
 content-type: application/json
 
 {
-"understandID": "101"
+"understandID": "101",
+"understandSoup": "soupy 1"
 }
 
-###
+
+### understand create multi
 POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
 content-type: application/json
+   
     {
     "understands": [{
         "understandID": "101"

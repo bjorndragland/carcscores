@@ -12,7 +12,10 @@
     <div id="app-carc2">
         <spiller-komp v-for="enkeltspiller in spiller" v.bind:key="enkeltspiller.SpillerID" v-bind:spillernavn="enkeltspiller.SpillerFornavn"
             v-bind:resultat="enkeltspiller.SpillerResultat"></spiller-komp>
-        <button @click=showMeSpiller>vis spiller</button>
+        <hr>
+        <p>{{ spiller[0].SpillerResultat }}</p>
+        <input v-model="spiller[0].SpillerResultat">
+
     </div>
 
     <script>

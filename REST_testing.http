@@ -72,37 +72,3 @@ content-type: application/json
 }
 
 
-
-### ************************ testing *******************************
-### understand read
-GET http://localhost/bjornagain/carcscores/carcscores/understand/readunderstand.php HTTP/1.1
-content-type: application/json
-
-
-### understand create
-POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
-content-type: application/json
-
-{
-"understandID": "101",
-"understandSoup": "soupy 1"
-}
-
-
-### understand create multi
-POST http://localhost/bjornagain/carcscores/carcscores/understand/createunderstand.php HTTP/1.1
-content-type: application/json
-   
-    {
-    "understands": [{
-        "understandID": "101"
-        }, {
-        "understandID": "102"
-        }, {
-        "understandID": "106"
-        }, {
-        "understandID": "107"
-        }, {
-        "understandID": "108"
-  }]
-}

@@ -12,8 +12,10 @@
 
 <body>
     <div id="app-carc">
-        <p>{{ nesteOmgangID }}</p>
-        <div id="id01" class="modal" v-if="showingAddModal">
+
+
+        <!-- modal for registrering av omgang -->
+        <div id="modalOmgang" class="modal" v-if="showingAddModal">
             <div class="modalContainer">
                 <div class="modalHeading">
                     <p class="fleft">Registrer resultater</p>
@@ -22,14 +24,19 @@
                 </div>
                 <div class="modalContent">
                     <div class="inputDiv">
+                        <label class="fleft"><b>Omgang ID</b></label>
+                        <p class="fright">{{ nesteOmgangID }}</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="inputDiv">
                         <label for="OmgDato" class="fleft"><b>Dato</b></label>
-                        <input type="date" name="OmgDato" class="fright inputDate">
+                        <input type="date" name="OmgDato" class="fright inputDate" v-model="omgangDato">
                         <div class="clear"></div>
                     </div>
                     <hr>
                     <div class="inputDiv" v-for="spiller in spiller">
                         <label for="poeng" class="fleft"><b>{{ spiller.SpillerFornavn }}</b></label>
-                        <input type="text" name="poeng" class="fright inputPoints">
+                        <input type="text" name="poeng" class="fright inputPoints" v-model="spiller.SpillerResultat">
                         <div class="clear"></div>
                     </div>
                     <hr>
@@ -41,42 +48,89 @@
                     <div class="clear"></div>
                 </div>
                 <hr>-->
-                    <button class="buttonEnter" @click="inputOmgangResults">Legg til</button>
+                    <button class="buttonEnter fright" @click="showingAddModal = false; inputOmgangResults()">Legg til</button>
                     <div class="clear"></div>
                 </div>
             </div>
         </div>
-        <table>
-            <tr>
-                <th>spiller ID</th>
-                <th>fornavn</th>
-            </tr>
-            <tr v-for="spiller in spiller">
-                <td>{{ spiller.SpillerID }}</td>
-                <td>{{ spiller.SpillerFornavn }}</td>
-            </tr>
-        </table>
-        <hr>
-        <table>
-            <tr>
-                <th>resultat ID</th>
-                <th>omgang</th>
-                <th>spiller</th>
-                <th>poeng</th>
-            </tr>
-            <tr v-for="resultat in resultat">
-                <td>{{ resultat.ResultatID }}</td>
-                <td>{{ resultat.ResOmgRef }}</td>
-                <td>{{ resultat.ResSpillerRef }}</td>
-                <td>{{ resultat.ResPoeng }}</td>
-            </tr>
-        </table>
-        <hr>
-        <button class="buttonEnter" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
 
+
+
+        <div id="modalSpiller" class="modal" v-if="showingAddSpiller">
+            <!-- modal for registrering av spiller -->
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Registrer spiller</p>
+                    <button class="fright close" @click="showingAddSpiller = false">X</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+
+                    <div class="inputDiv">
+                        <label for="Spiller" class="fleft"><b>Fornavn</b></label>
+                        <input type="text" name="poeng" class="fright inputPlayer">
+                        <div class="clear"></div>
+                    </div>
+                    <hr>
+
+                    <button class="buttonEnter fright" @click="showingAddSpiller = false">Legg til</button>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="wholepage">
+
+
+            <div class="header">
+                <!--<p>tjoho</p>-->
+            </div>
+
+            <div class="addOmgang">
+
+                <button class="buttonEnter fmiddle" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
+                <div class="clear"></div>
+            </div>
+
+            <div class="addPlayer">
+                <button class="buttonEnter  fmiddle" id="newOmgang" @click="showingAddSpiller = true;">Ny Spiller</button>
+                <div class="clear"></div>
+            </div>
+
+            <div class="seeStatistics">
+                <button class="buttonEnter  fmiddle" id="newOmgang" @click="showingAddModal = true;">Statistikk</button>
+                <div class="clear"></div>
+            </div>
+
+            <div class="Omgangstabell">
+                <table class="omgang">
+                    <!-- fyller inn hovedtabellen-->
+                    <tr>
+                        <th>Omgang</th>
+                        <th>Dato</th>
+                        <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
+                    </tr>
+                    <tr v-for="reslinje in resultat">
+                        <td v-for="respos in reslinje">{{ respos }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!--
+        <button class="buttonEnter" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
         <div class="clear"></div>
+-->
+
     </div>
     <script src="../carcscores/js/app.js"></script>
+
 </body>
 
 </html>

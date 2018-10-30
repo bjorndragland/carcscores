@@ -14,8 +14,10 @@ class understandobj
     function createunderstand($data_fra)
     {
         //$this->$understandSoup;
-        echo json_encode($data_fra);
-        //echo "hallo";
+        //$datajson =  json_encode($data_fra);
+        //echo $datajson->understands[1]->understandID;
+        echo $data_fra->understands[1]->understandID;
+
         return true;
     }
 }

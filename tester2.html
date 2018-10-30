@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hr>
+        <div v-for="ar in arrayor">
+            <input v-model="ar.navn">
+            <input v-model="ar.poeng">
+        </div>
+
+        <hr>
+        <spiller-komp v-for="ar in arrayor" v-bind:key="ar.id" v-bind:navn="ar.navn" v-bind:poeng="ar.poeng">
+        </spiller-komp>
+    </div>
+
+    <script>
+
+        Vue.component('spiller-komp', {
+            props: ['id', 'navn', 'poeng'],
+            template: `<div>
+                    <label>{{ navn }}</label>
+                    <input v-model="poeng">
+            </div>`
+        })
+        //<p>{{ arprop.navn }}</p>
+
+        var app1 = new Vue({
+            el: '#app',
+            data: {
+                finds: [],
+                arrayor: [
+                    { id: 1, navn: "Bjørn", poeng: 123 },
+                    { id: 2, navn: "Asgeir", poeng: 145 },
+                    { id: 3, navn: "Terje", poeng: 214 }
+                ]
+            },
+            methods: {
+                addFind: function () {
+                    this.finds.push({ value: '' });
+                }
+            }
+        });
+
+    </script>
+
+
+</body>
+
+
+</html>

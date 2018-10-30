@@ -37,6 +37,8 @@ if($num>0){
         $spiller_item=array(
             "SpillerID" => $SpillerID,
             "SpillerFornavn" => $SpillerFornavn,
+            "SpillerOmgang" => 0,
+            "SpillerResultat" => 0,
         );
         array_push($spiller_arr["spiller"], $spiller_item);
     }

@@ -9,6 +9,8 @@ class spiller
     // spiller attributter
     public $SpillerID;
     public $SpillerFornavn;
+    public $SpillerOmgang;
+    public $SpillerResultat;
  
     // constructor with $db as database connection
     public function __construct($db)
@@ -23,8 +25,7 @@ class spiller
         $query = "SELECT
                SpillerID, SpillerFornavn
             FROM
-                spiller
-            ORDER BY SpillerFornavn";
+                spiller";
     // prepare query statement
         $stmt = $this->conn->prepare($query);
     // execute query

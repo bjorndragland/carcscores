@@ -16,8 +16,9 @@ content-type: application/json
 }
 
 
-### resultat read
-
+### resultat readcomplex
+GET http://localhost/bjornagain/carcscores/carcscores/resultat/readcomplex.php HTTP/1.1
+content-type: application/json
 
 
 ### resultat create
@@ -55,6 +56,11 @@ content-type: application/json
         "ResPoeng":"171"
     }
 ]
+
+
+### spiller read
+GET http://localhost/bjornagain/carcscores/carcscores/spiller/read.php HTTP/1.1
+content-type: application/json
 
 
 ### spiller create

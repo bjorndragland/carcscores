@@ -12,7 +12,9 @@ class resultat
     public $ResOmgangRef;
     public $ResSpillerRef;
     public $ResPoeng;
-
+    public $resomgref;
+    public $allPlayers;
+    public $resultatP_arr;
 
     // constructor with $db as database connection
     public function __construct($db)
@@ -69,17 +71,53 @@ class resultat
         return false;
     }
 
-
-    function createMultiple()
+    // hent spillere til resultat-tabell
+    function getPlayerHeaders()
     {
-        $query = "INSERT INTO
-            resultat
-            (ResultatID, ResOmgRef, ResSpillerRef, ResPoeng)
-        VALUES
-            (),
-            (),
-            ()";
+        $queryP = "SELECT spiller.SpillerID, spiller.SpillerFornavn
+        FROM kaerkis.spiller
+        ORDER BY SpillerID";
+        $stmtP = $this->conn->prepare($queryP);
+        $stmtP->execute();
+        $numP = $stmtP->rowCount();
+        if ($numP > 0) {
 
+            $resultatP_arr = array();
+            while ($rowP = $stmtP->fetch(PDO::FETCH_OBJ)) {
+                array_push($resultatP_arr, $rowP);
+            }
+            return $resultatP_arr;
+        } else {
+            return false;
+        }
+    }
+
+    // hent resultat-tabell basert på spillere
+    function getIts($playerArray)
+    {
+        $delstreng = "";
+        foreach ($playerArray as $value) {
+            $delstreng = $delstreng . "SUM( IF(resspillerref = " . ($value->SpillerID) . ", respoeng,0) ) AS " . ($value->SpillerFornavn) . ", ";
+        };
+        $delstrenglen = strlen($delstreng);
+        $delstreng2 = substr($delstreng, 0, ($delstrenglen - 2));
+        $query3 = "SELECT resultat.resomgref, omgang.omgangdato," . $delstreng2 . " FROM kaerkis.resultat
+        INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
+        group by resomgref";
+        $stmt3 = $this->conn->prepare($query3);
+        $stmt3->execute();
+        $num3 = $stmt3->rowCount();
+        if ($num3 > 0) {
+            $resultat3_arr = array();
+            $resultat3_arr["resultat"] = array();
+            while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
+                extract($row3);
+                array_push($resultat3_arr["resultat"], $row3);
+            }
+            return $resultat3_arr;
+        } else {
+            return false;
+        }
     }
 
 

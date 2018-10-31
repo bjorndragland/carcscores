@@ -61,7 +61,6 @@ var app1 = new Vue({
                 ResultatID: resultatNew.ResultatID, ResOmgRef: resultatNew.ResOmgRef,
                 ResSpillerRef: resultatNew.ResSpillerRef, ResPoeng: resultatNew.ResPoeng
             })
-
         },
 
         inputOmgangResults: function () {
@@ -71,21 +70,18 @@ var app1 = new Vue({
                 OmgangID: "NULL", OmgangDato: app1.omgangDato
             })
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
                 })
 
             // opprett resultater fra array
             axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/createmulti.php", app1.spillerRes
             )
-                .then(function (response) {
-                    console.log(response);
-                })
-
-            // les resultater fra database på nytt
-            this.readComplexResultatViaREST();
-
-            // les siste omgangsID på nytt:
-            this.readLastOmgangIDViaREST();
+                // les inn til spillere på nytt.
+                .then(this.readSpillerViaREST())
+                // les resultater fra database på nytt
+                .then(this.readComplexResultatViaREST())
+                // les siste omgangsID på nytt:
+                .then(this.readLastOmgangIDViaREST()); 
 
         },
 

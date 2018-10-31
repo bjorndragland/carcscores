@@ -73,21 +73,17 @@ class resultat
 
     function createmulti($omgdata)
     {
-        //echo json_encode($omgdata);
         $querystreng0 = "";
         foreach ($omgdata as $spillerres) {
             $querystreng0 = $querystreng0 . "(NULL," . $spillerres->SpillerOmgang . "," . $spillerres->SpillerID . "," . $spillerres->SpillerResultat . "),";
         }
         $querystreng1 = substr($querystreng0, 0, (strlen($querystreng0) - 1));
         $query4 = "INSERT INTO resultat (ResultatID, ResOmgRef, ResSpillerRef, ResPoeng) VALUES" . $querystreng1 . "";
-        //echo $query4;
         $stmt4 = $this->conn->prepare($query4);
         if ($stmt4->execute()) {
             return true;
-            //echo "success";
         } else {
             return false;
-            //echo "fail";
         }
     }
 

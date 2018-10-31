@@ -39,14 +39,6 @@ class omgang
 
     function readLastID()
     {
-        /*
-        $query = "SELECT
-            OmgangID
-        FROM
-            omgang
-        order by OmgangID desc
-        limit 1";
-         */
         // litt hackete, men:
         $query = "SELECT Auto_increment FROM information_schema.tables WHERE table_name='omgang' AND table_schema='kaerkis'";
 

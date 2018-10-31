@@ -1,14 +1,4 @@
 
-Vue.component('spiller-komp2', {
-    props: ['id', 'navn', 'poeng'],
-    // template: '<div><label>{{ enkeltspiller.SpillerFornavn }}</label><input type="text" {{ enkeltspiller.SpillerResultat }}></div>'
-    // blir feil...
-    template: `<div>
-    <label>{{ navn }}</label>
-    <input v-model="poeng">
-    </div>`
-})
-
 var app1 = new Vue({
     el: "#app-carc",
 
@@ -18,18 +8,7 @@ var app1 = new Vue({
         nesteOmgangID: 0,
         omgangDato: "",
         showingAddModal: false,
-        showingAddSpiller: false,
-        testAppend: {
-            resomgref: "111",
-            omgangdato: "2017-09-12",
-            Asgeir: "0",
-            Bjørn: "145",
-            Ernad: "98",
-            Pawel: "0",
-            Terje: "124",
-            Yahiya: "134",
-            Øyvind: "141"
-        }
+        showingAddSpiller: false
     },
 
     created:
@@ -82,14 +61,32 @@ var app1 = new Vue({
                 ResultatID: resultatNew.ResultatID, ResOmgRef: resultatNew.ResOmgRef,
                 ResSpillerRef: resultatNew.ResSpillerRef, ResPoeng: resultatNew.ResPoeng
             })
+
         },
 
         inputOmgangResults: function () {
-            console.log(app1.spiller);
-            this.resultat.push(this.testAppend);
-            // append resultater til tabell
-            // opprett omgang med dato
+
+            // opprett omgang med dato fra dato-input
+            axios.post("http://localhost/bjornagain/carcscores/carcscores/omgang/create.php", {
+                OmgangID: "NULL", OmgangDato: app1.omgangDato
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+
             // opprett resultater fra array
+            axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/createmulti.php", app1.spillerRes
+            )
+                .then(function (response) {
+                    console.log(response);
+                })
+
+            // les resultater fra database på nytt
+            this.readComplexResultatViaREST();
+
+            // les siste omgangsID på nytt:
+            this.readLastOmgangIDViaREST();
+
         },
 
         readComplexResultatViaREST: function () {
@@ -103,7 +100,7 @@ var app1 = new Vue({
 
         readLastOmgangIDViaREST: function () {
             axios.get("http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php")
-                .then(response => { this.nesteOmgangID = (parseInt(response.data.OmgangID) + 1) })
+                .then(response => { this.nesteOmgangID = (response.data.Auto_increment).toString() })
         },
     },
     computed: {

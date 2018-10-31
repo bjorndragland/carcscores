@@ -20,6 +20,11 @@ $resultat = new resultat($db);
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
+//echo file_get_contents("php://input");
+
+//echo json_encode($data);
+$resultat->createmulti($data);
+
 
 // set product property values
 /*
@@ -28,7 +33,7 @@ $resultat->ResOmgRef = $data->ResOmgRef;
 $resultat->ResSpillerRef = $data->ResSpillerRef;
 $resultat->ResPoeng = $data->ResPoeng;
 */
-
+/*
 // opprett omgangen
 if($resultat->createMultiple()){
     echo '{';
@@ -42,4 +47,5 @@ else{
         echo '"message": "Unable to create resultat."';
     echo '}';
 }
+*/
 ?>

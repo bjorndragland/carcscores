@@ -22,12 +22,11 @@ $omgang = new omgang($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-
 // set product property values
 $omgang->OmgangID = $data->OmgangID;
-//$omgang->OmgangOpprettet = $data->OmgangOpprettet;
+$omgang->OmgangDato = $data->OmgangDato;
 
- 
+
 // opprett omgangen
 if($omgang->create()){
     echo '{';
@@ -41,4 +40,5 @@ else{
         echo '"message": "Unable to create omgang."';
     echo '}';
 }
+
 ?>

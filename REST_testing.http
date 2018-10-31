@@ -34,28 +34,8 @@ content-type: application/json
 
 ### resultat create multiple
 ### virker ikke, under arbeid
-POST http://localhost/bjornagain/carcscores/carcscores/resultat/createMultiple.php HTTP/1.1
-content-type: application/json
-[
-    {
-        "ResultatID": "NULL",
-        "ResOmgRef":"107",
-        "ResSpillerRef":"3",
-        "ResPoeng":"163"
-    },
-    {
-        "ResultatID": "NULL",
-        "ResOmgRef":"107",
-        "ResSpillerRef":"1",
-        "ResPoeng":"124"
-    },
-    {
-        "ResultatID": "NULL",
-        "ResOmgRef":"107",
-        "ResSpillerRef":"5",
-        "ResPoeng":"171"
-    }
-]
+POST http://localhost/bjornagain/carcscores/carcscores/resultat/createmulti.php  HTTP/1.1
+content-type: application/json        
 
 
 ### spiller read

@@ -92,15 +92,14 @@ class resultat
         }
     }
 
-    // hent resultat-tabell basert på spillere
+    // hent resultat-tabell basert på spillere fra getPlayerHeaders
     function getIts($playerArray)
     {
         $delstreng = "";
         foreach ($playerArray as $value) {
             $delstreng = $delstreng . "SUM( IF(resspillerref = " . ($value->SpillerID) . ", respoeng,0) ) AS " . ($value->SpillerFornavn) . ", ";
         };
-        $delstrenglen = strlen($delstreng);
-        $delstreng2 = substr($delstreng, 0, ($delstrenglen - 2));
+        $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
         $query3 = "SELECT resultat.resomgref, omgang.omgangdato," . $delstreng2 . " FROM kaerkis.resultat
         INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
         group by resomgref";

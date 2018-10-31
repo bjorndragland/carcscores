@@ -16,7 +16,6 @@ $resultat = new resultat($db);
 
 $spillerHeader = $resultat->getPlayerHeaders();
 $resultattabell = $resultat->getIts($spillerHeader);
-//echo count($answer2);
 echo json_encode($resultattabell);
 
 ?>

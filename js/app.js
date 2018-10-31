@@ -18,7 +18,18 @@ var app1 = new Vue({
         nesteOmgangID: 0,
         omgangDato: "",
         showingAddModal: false,
-        showingAddSpiller: false
+        showingAddSpiller: false,
+        testAppend: {
+            resomgref: "111",
+            omgangdato: "2017-09-12",
+            Asgeir: "0",
+            Bjørn: "145",
+            Ernad: "98",
+            Pawel: "0",
+            Terje: "124",
+            Yahiya: "134",
+            Øyvind: "141"
+        }
     },
 
     created:
@@ -75,6 +86,7 @@ var app1 = new Vue({
 
         inputOmgangResults: function () {
             console.log(app1.spiller);
+            this.resultat.push(this.testAppend);
             // append resultater til tabell
             // opprett omgang med dato
             // opprett resultater fra array

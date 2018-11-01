@@ -12,6 +12,7 @@
 
 
 <body>
+
     <div id="app-carc">
 
         <!-- modal for registrering av omgang -->
@@ -48,8 +49,12 @@
                     <div class="clear"></div>
                 </div>
                 <hr>-->
-                    <button class="buttonEnter fright" @click="showingAddModal = false; inputOmgangResults()">Legg til</button>
-                    <div class="clear"></div>
+                    <div>
+                        
+                        <button class="buttonEnter fright" @click="showingAddModal = false; inputOmgangResults()">Legg til</button>
+                        <button class="buttonCancel fright" @click="showingAddModal = false">Avbryt</button>
+                        <div class="clear"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,6 +78,7 @@
                     <hr>
 
                     <button class="buttonEnter fright" @click="showingAddSpiller = false">Legg til</button>
+                    <button class="buttonCancel fright" @click="showingAddModal = false">Avbryt</button>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -80,7 +86,7 @@
 
 
 
-
+        <!-- hovedlayout -->
         <div class="wholepage">
 
             <div class="header">
@@ -89,17 +95,17 @@
 
             <div class="addOmgang">
 
-                <button class="buttonEnter fmiddle" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
+                <button class="buttonCreate fmiddle" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
                 <div class="clear"></div>
             </div>
 
             <div class="addPlayer">
-                <button class="buttonEnter  fmiddle" id="newOmgang" @click="showingAddSpiller = true;">Ny Spiller</button>
+                <button class="buttonCreate  fmiddle" id="newOmgang" @click="showingAddSpiller = true;">Ny Spiller</button>
                 <div class="clear"></div>
             </div>
 
             <div class="seeStatistics">
-                <button class="buttonEnter  fmiddle" id="newOmgang" @click="showingAddModal = true;">Statistikk</button>
+                <button class="buttonCreate  fmiddle" id="newOmgang" @click="showingAddModal = true;">Statistikk</button>
                 <div class="clear"></div>
             </div>
 
@@ -107,22 +113,19 @@
                 <table class="omgang">
                     <!-- fyller inn hovedtabellen-->
                     <tr>
+                        <th>Endre</th>
                         <th>Omgang</th>
                         <th>Dato</th>
                         <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
                     </tr>
                     <tr v-for="reslinje in resultat">
+                        <td><img src="filer/Edit_Icon.svg" width="16" height="16" @click="this.alert(reslinje.resomgref)" /></td>
+                        <!--<td><button @click="this.alert(reslinje.resomgref)">klikk</button></td>-->
                         <td v-for="respos in reslinje">{{ respos }}</td>
                     </tr>
                 </table>
             </div>
         </div>
-
-        <!--
-        <button class="buttonEnter" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
-        <div class="clear"></div>
--->
-
     </div>
     <script src="../carcscores/js/app.js"></script>
 

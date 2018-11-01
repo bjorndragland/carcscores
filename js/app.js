@@ -21,10 +21,23 @@ var app1 = new Vue({
 
     methods: {
         setDaters: function () {
-            var DateNow = new Date;
-            var DateString = DateNow.getFullYear() + "-" + (DateNow.getMonth() + 1) + "-" + DateNow.getDate();
+            let DateNow = new Date;
+            let Maaned, Dag;
+            if ((DateNow.getMonth() + 1) < 10) {
+                Maaned = "0" + (DateNow.getMonth() + 1)
+            } else {
+                Maaned = (DateNow.getMonth() + 1)
+            }
+
+            if (DateNow.getDate() < 10) {
+                Dag = "0" + DateNow.getDate()
+            } else {
+                Dag = DateNow.getDate()
+            }
+            var DateString = DateNow.getFullYear() + "-" + Maaned + "-" + Dag;
             //sett riktig datoformat for input
             this.omgangDato = DateString;
+            console.log(DateString);
         },
 
         readSpillerViaREST: function () {
@@ -81,7 +94,7 @@ var app1 = new Vue({
                 // les resultater fra database på nytt
                 .then(this.readComplexResultatViaREST())
                 // les siste omgangsID på nytt:
-                .then(this.readLastOmgangIDViaREST()); 
+                .then(this.readLastOmgangIDViaREST());
 
         },
 

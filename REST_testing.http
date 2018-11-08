@@ -16,6 +16,10 @@ content-type: application/json
 }
 
 
+### resultat read
+GET http://localhost/bjornagain/carcscores/carcscores/resultat/read.php HTTP/1.1
+content-type: application/json
+
 ### resultat readcomplex
 GET http://localhost/bjornagain/carcscores/carcscores/resultat/readcomplex.php HTTP/1.1
 content-type: application/json
@@ -41,6 +45,17 @@ content-type: application/json
 ### spiller read
 GET http://localhost/bjornagain/carcscores/carcscores/spiller/read.php HTTP/1.1
 content-type: application/json
+
+
+### spiller readagain
+GET http://localhost/bjornagain/carcscores/carcscores/spiller/readagain.php HTTP/1.1
+content-type: application/json
+
+
+### spiller test_objects
+GET http://localhost/bjornagain/carcscores/carcscores/spiller/test_objects.php HTTP/1.1
+content-type: application/json
+
 
 
 ### spiller create

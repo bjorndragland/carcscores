@@ -1,7 +1,7 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=UTF-8');
 
 // include database and object files
 include_once '../config/database.php';
@@ -19,38 +19,38 @@ $stmt = $resultat->read();
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
-if($num>0){
+if ($num > 0) {
  
     // products array
-    $resultat_arr=array();
-    $resultat_arr["resultat"]=array();
+    $resultat_arr = array();
+    $resultat_arr['resultat'] = array();
  
     // retrieve our table contents
     // fetch() is faster than fetchAll()
     // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
- 
-        $resultat_item=array(
-            "ResultatID" => $ResultatID,
-            "ResOmgRef" => $ResOmgRef,
-            "ResSpillerRef" => $ResSpillerRef,
-            "ResPoeng" => $ResPoeng
-            //"navnEtter" => $navnEtter
+        
+        $resultat_item = array(
+            'ResultatID' => $ResultatID,
+            'ResOmgRef' => $ResOmgRef,
+            'ResSpillerRef' => $ResSpillerRef,
+            'ResPoeng' => $ResPoeng
+            //'navnEtter' => $navnEtter
         );
- 
-        array_push($resultat_arr["resultat"], $resultat_item);
-    }
- 
-    echo json_encode($resultat_arr);
-}
 
-else{
+        $res_toparray = array(
+            $ResOmgRef => $resultat_item
+        );
+        array_push($resultat_arr['resultat'], $res_toparray);
+
+        //array_push($resultat_arr['resultat'], $resultat_item);
+    }
+
+    echo json_encode($resultat_arr);
+} else {
     echo json_encode(
-        array("message" => "Ingen resultat funnet")
+        array('message' => 'Ingen resultat funnet')
     );
 }
 ?>

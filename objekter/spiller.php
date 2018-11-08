@@ -4,7 +4,7 @@ class spiller
 {
     // database connection and table name
     private $conn;
-    private $table_name = "spiller";
+    private $table_name = 'spiller';
  
     // spiller attributter
     public $SpillerID;
@@ -22,10 +22,10 @@ class spiller
     function read()
     {
     // select all query
-        $query = "SELECT
+        $query = 'SELECT
                SpillerID, SpillerFornavn
             FROM
-                spiller";
+                spiller';
     // prepare query statement
         $stmt = $this->conn->prepare($query);
     // execute query
@@ -33,14 +33,31 @@ class spiller
         return $stmt;
     }
 
+
+    function readagain()
+    {
+    // select all query
+        $query = 'SELECT
+        SpillerID, SpillerFornavn
+        FROM
+        spiller';
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        // execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+
 // opprett spiller
     function create()
     {
         // query
-        $query = "INSERT INTO
-                    " . $this->table_name . "
+        $query = 'INSERT INTO
+                    ' . $this->table_name . '
                 SET
-                SpillerFornavn=:SpillerFornavn";
+                SpillerFornavn=:SpillerFornavn';
      
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -49,7 +66,7 @@ class spiller
         $this->SpillerFornavn = htmlspecialchars(strip_tags($this->SpillerFornavn));
      
         // bind values
-        $stmt->bindParam(":SpillerFornavn", $this->SpillerFornavn);
+        $stmt->bindParam(':SpillerFornavn', $this->SpillerFornavn);
      
         // execute query
         if ($stmt->execute()) {

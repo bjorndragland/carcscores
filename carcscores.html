@@ -15,12 +15,12 @@
 
     <div id="app-carc">
 
-        <!-- modal for registrering av omgang -->
-        <div id="modalOmgang" class="modal" v-if="showingAddModal">
+        <!-- modal for registrering av resultat -->
+        <div id="modalAddOmgang" class="modal" v-if="showingmodalAddOmgang">
             <div class="modalContainer">
                 <div class="modalHeading">
-                    <p class="fleft">Registrer resultater</p>
-                    <button class="fright close" @click="showingAddModal = false">X</button>
+                    <p class="fleft">Nytt resultat</p>
+                    <button class="fright close" @click="showingmodalAddOmgang = false; nullStillSpiller()">X</button>
                     <div class="clear"></div>
                 </div>
                 <div class="modalContent">
@@ -41,20 +41,39 @@
                         <div class="clear"></div>
                     </div>
                     <hr>
-                    <!--
-                    <div class="inputDiv">
-                        <label for="OmgDesc" class="fleft"><b>Beskrivelse</b></label>
-
-                    <textarea class="inputArea frigth" name="OmgDesc"></textarea>
-                    <div class="clear"></div>
-                </div>
-                <hr>-->
                     <div>
-                        
-                        <button class="buttonEnter fright" @click="showingAddModal = false; inputOmgangResults()">Legg til</button>
-                        <button class="buttonCancel fright" @click="showingAddModal = false">Avbryt</button>
+                        <button class="buttonEnter fright" @click="showingmodalAddOmgang = false; inputOmgangResults()">Legg
+                            til</button>
+                        <button class="buttonCancel fright" @click="showingmodalAddOmgang = false; nullStillSpiller()">Avbryt</button>
                         <div class="clear"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- modal for forandring av resultat -->
+        <div id="modalSpiller" class="modal" v-if="showingmodalChangeOmgang">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Registrer spiller</p>
+                    <button class="fright close" @click="showingmodalChangeOmgang = false">X</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+                    <p>{{resultatToChange}}</p>
+
+                    <div class="inputDiv" v-for="(ressos, key) in resultatToChange">
+                        <p> {{ key }} </p>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <hr>
+
+                    <button class="buttonEnter fright" @click="showingmodalChangeOmgang = false">Legg til</button>
+                    <button class="buttonCancel fright" @click="showingmodalChangeOmgang = false">Avbryt</button>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
@@ -78,7 +97,7 @@
                     <hr>
 
                     <button class="buttonEnter fright" @click="showingAddSpiller = false">Legg til</button>
-                    <button class="buttonCancel fright" @click="showingAddModal = false">Avbryt</button>
+                    <button class="buttonCancel fright" @click="showingAddSpiller = false">Avbryt</button>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -95,7 +114,8 @@
 
             <div class="addOmgang">
 
-                <button class="buttonCreate fmiddle" id="newOmgang" @click="showingAddModal = true;">Nye resultater</button>
+                <button class="buttonCreate fmiddle" id="newOmgang" @click="showingmodalAddOmgang = true;">Nytt
+                    resultat</button>
                 <div class="clear"></div>
             </div>
 
@@ -105,26 +125,35 @@
             </div>
 
             <div class="seeStatistics">
-                <button class="buttonCreate  fmiddle" id="newOmgang" @click="showingAddModal = true;">Statistikk</button>
-                <div class="clear"></div>
+                <button class="buttonCreate  fmiddle" @click="flashTableRow()">test shit</button>
+                <!--<button class="buttonCreate  fmiddle" id="newOmgang" @click="showingmodalAddOmgang = true;" disabled=true>Statistikk</button>
+                <div class="clear"></div>-->
             </div>
 
+
+
+
             <div class="Omgangstabell">
-                <table class="omgang">
-                    <!-- fyller inn hovedtabellen-->
+                <!-- <p v-bind:class="{ active: isActive }">halooooooo</p> -->
+
+                <table id="omgangstabell" ref="omgangstabell">
+                    <!-- fyller inn headere i hovedtabellen-->
                     <tr>
-                        <th>Endre</th>
+                        <th class="centerCell">Endre</th>
                         <th>Omgang</th>
                         <th>Dato</th>
                         <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
                     </tr>
-                    <tr v-for="reslinje in resultat">
-                        <td><img src="filer/Edit_Icon.svg" width="16" height="16" @click="this.alert(reslinje.resomgref)" /></td>
+                    <!-- fyller inn data i hovedtabellen-->
+                    <tr v-for="reslinje in resultat.slice().reverse()">
+                        <td class="centerCell"><img src="filer/Edit_Icon.svg" width="16" height="16" @click="checkContent(reslinje); showingmodalChangeOmgang = true" /></td>
                         <!--<td><button @click="this.alert(reslinje.resomgref)">klikk</button></td>-->
                         <td v-for="respos in reslinje">{{ respos }}</td>
                     </tr>
                 </table>
+
             </div>
+
         </div>
     </div>
     <script src="../carcscores/js/app.js"></script>

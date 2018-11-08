@@ -2,8 +2,8 @@
 // kopiert fra API_tester
 // spillomganger.read
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=UTF-8');
  
 // include database and object files
 include_once '../config/database.php';
@@ -25,7 +25,7 @@ if($num>0){
  
     // products array
     $omgang_arr=array();
-    $omgang_arr["omgang"]=array();
+    $omgang_arr['omgang']=array();
  
     // retrieve our table contents
     // fetch() is faster than fetchAll()
@@ -37,11 +37,11 @@ if($num>0){
         extract($row);
  
         $omgang_item=array(
-            "OmgangID" => $OmgangID,
-            "OmgangOpprettet" => $OmgangOpprettet
+            'OmgangID' => $OmgangID,
+            'OmgangOpprettet' => $OmgangOpprettet
         );
  
-        array_push($omgang_arr["omgang"], $omgang_item);
+        array_push($omgang_arr['omgang'], $omgang_item);
     }
  
     echo json_encode($omgang_arr);
@@ -49,7 +49,7 @@ if($num>0){
 
 else{
     echo json_encode(
-        array("message" => "No products found.")
+        array('message' => 'No products found.')
     );
 }
 ?>

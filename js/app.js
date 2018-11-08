@@ -5,11 +5,42 @@ var app1 = new Vue({
     data: {
         spiller: [],
         resultat: [],
+        resultatToChange: {},
         nesteOmgangID: 0,
         omgangDato: "",
-        showingAddModal: false,
-        showingAddSpiller: false
+        showingmodalAddOmgang: false,
+        showingmodalChangeOmgang: false,
+        showingAddSpiller: false,
+        show: true,
+        isActive: true,
+        troll:
+        {
+            "spiller": {
+                1: {
+                    "SpillerID": "1",
+                    "SpillerFornavn": "Asgeir",
+                    "SpillerOmgang": 0,
+                    "SpillerResultat": 0
+
+                },
+                2: {
+                    "SpillerID": "2",
+                    "SpillerFornavn": "Bj\u00f8rn",
+                    "SpillerOmgang": 0,
+                    "SpillerResultat": 0
+
+                },
+                7: {
+                    "SpillerID": "7",
+                    "SpillerFornavn": "Terje",
+                    "SpillerOmgang": 0,
+                    "SpillerResultat": 0
+                }
+            }
+        }
     },
+
+
 
     created:
         function () {
@@ -37,7 +68,13 @@ var app1 = new Vue({
             var DateString = DateNow.getFullYear() + "-" + Maaned + "-" + Dag;
             //sett riktig datoformat for input
             this.omgangDato = DateString;
-            console.log(DateString);
+            //console.log(DateString);
+        },
+
+        checkContent: function (resultatlinje) {
+            //console.log(resultatlinje);
+            this.resultatToChange = resultatlinje;
+            console.log();
         },
 
         readSpillerViaREST: function () {
@@ -77,7 +114,6 @@ var app1 = new Vue({
         },
 
         inputOmgangResults: function () {
-
             // opprett omgang med dato fra dato-input
             axios.post("http://localhost/bjornagain/carcscores/carcscores/omgang/create.php", {
                 OmgangID: "NULL", OmgangDato: app1.omgangDato
@@ -94,8 +130,24 @@ var app1 = new Vue({
                 // les resultater fra database på nytt
                 .then(this.readComplexResultatViaREST())
                 // les siste omgangsID på nytt:
-                .then(this.readLastOmgangIDViaREST());
+                .then(this.readLastOmgangIDViaREST())
 
+        },
+
+        flashTableRow: function () {
+            //document.querySelector(".tr:nth-child(2)").style.backgroundColor = "red";
+            //console.log("jjjj");
+            //this.isActive = false;
+            console.log(this.resultat);
+
+        },
+
+        nullStillSpiller: function () {
+            return this.spiller.map((spi) => {
+                spi.SpillerOmgang = this.nesteOmgangID;
+                spi.SpillerResultat = 0;
+                return spi
+            })
         },
 
         readComplexResultatViaREST: function () {

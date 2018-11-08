@@ -5,7 +5,7 @@ class omgang
 {
     // database connection and table name
     private $conn;
-    private $table_name = "omgang";
+    private $table_name = 'omgang';
  
     // spiller attributter
     public $OmgangID;
@@ -23,11 +23,11 @@ class omgang
     function read()
     {
     // select all query
-        $query = "SELECT
+        $query = 'SELECT
             OmgangID, OmgangOpprettet
         FROM
             omgang
-        ORDER BY OmgangID";
+        ORDER BY OmgangID';
         
     // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -40,7 +40,7 @@ class omgang
     function readLastID()
     {
         // litt hackete, men:
-        $query = "SELECT Auto_increment FROM information_schema.tables WHERE table_name='omgang' AND table_schema='kaerkis'";
+        $query = 'SELECT Auto_increment FROM information_schema.tables WHERE table_name="omgang" AND table_schema="kaerkis"';
 
 
 
@@ -56,10 +56,10 @@ class omgang
     function create()
     {
         // query
-        $query = "INSERT INTO
-                    " . $this->table_name . "
+        $query = 'INSERT INTO
+                    ' . $this->table_name . '
                 SET
-                OmgangID=:OmgangID, OmgangDato=:OmgangDato";
+                OmgangID=:OmgangID, OmgangDato=:OmgangDato';
      
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -70,8 +70,8 @@ class omgang
 
      
         // bind values
-        $stmt->bindParam(":OmgangID", $this->OmgangID);
-        $stmt->bindParam(":OmgangDato", $this->OmgangDato);
+        $stmt->bindParam(':OmgangID', $this->OmgangID);
+        $stmt->bindParam(':OmgangDato', $this->OmgangDato);
      
         // execute query
         if ($stmt->execute()) {

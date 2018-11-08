@@ -164,6 +164,17 @@ h1 {
     color: white;
 }
 
+.buttonDelete {
+    background: rgb(173, 153, 64);
+    margin-left:2px;
+    margin-right:2px;
+    margin-top: 19px;
+    margin-bottom: 9px;
+    padding: 9px 15px;
+    border: none;
+    color: white;
+}
+
 .buttonCreate {
     background: rgb(64, 138, 64);
     /* margin-left:2px; */

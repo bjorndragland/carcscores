@@ -147,13 +147,11 @@ class resultat
         } else {
             return false;
         }
-
     }
 
 
 
 
- // hent resultat-tabell basert på spillere fra getPlayerHeaders
     function getIts2($playerArray)
     {
         $delstreng = '';
@@ -164,37 +162,45 @@ class resultat
                 ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
         };
         $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
-        $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 . ' FROM kaerkis.resultat
-     INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
-     group by resomgref';
+        $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 .
+            ' FROM kaerkis.resultat
+        INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
+        group by resomgref';
         $stmt3 = $this->conn->prepare($query3);
         $stmt3->execute();
         $num3 = $stmt3->rowCount();
         $colcount = $stmt3->columnCount(); // ************* nytt
 
-
         if ($num3 > 0) {
             $resultat3_arr = array();
             $res_arr = array();
             $resultat3_arr['resultat'] = array();
+            $resultat4_arr = array();
             while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
                 extract($row3);
                 $itisit = $row3["resomgref"];           
-/*
-             $omgang_item=array(
-                'OmgangID' => $OmgangID,
-                'OmgangOpprettet' => $OmgangOpprettet
-            );
-                 */
-                array_push($resultat3_arr['resultat'], $row3);
+
+                //array_push($resultat3_arr['resultat'], $row3);
+                array_push($resultat4_arr, $row3);
+                //$res_arr
             }
-         //return $resultat3_arr;
-         //return $colcount;
-            return $itisit;
+
+            // for hver row:
+            $res9_arr = array("id" => "resomgref", "verdi" => "142"); // objekt 0
+            $res10_arr = array("id" => "omgangdato", "verdi" => "2017-11-23"); // objekt 1
+            $res6_arr = array("id" => "2", "verdi" => "145"); // objekt 2
+            // 3 ...
+
+            $resultat5_arr = array($res9_arr, $res10_arr, $res6_arr, $res6_arr); // array
+            $resultat7_arr = array($res9_arr, $res10_arr, $res6_arr, $res6_arr); // array
+            $resultat8_arr = array($resultat5_arr, $resultat7_arr); // array
+            $resultat13_arr = array("resultat" => $resultat8_arr); // objekt
+
+            return $resultat13_arr;
+            //return "hallo";
         } else {
             return false;
         }
-
     }
 
 

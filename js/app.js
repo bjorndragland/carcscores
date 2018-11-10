@@ -13,8 +13,36 @@ var app1 = new Vue({
         showingAddSpiller: false,
         show: true,
         isActive: true,
-
         troll:
+            [
+                [{
+                    "id": "resomgref",
+                    "verdi": "142"
+                }, {
+                    "id": "omgangdato",
+                    "verdi": "2017-11-23"
+                }, {
+                    "id": "2",
+                    "verdi": "145"
+                }, {
+                    "id": "2",
+                    "verdi": "145"
+                }],
+                [{
+                    "id": "resomgref",
+                    "verdi": "142"
+                }, {
+                    "id": "omgangdato",
+                    "verdi": "2017-11-23"
+                }, {
+                    "id": "2",
+                    "verdi": "145"
+                }, {
+                    "id": "2",
+                    "verdi": "145"
+                }]
+            ],
+        troll2:
             [
                 [
                     { id: "resomgref", verdi: "142" },

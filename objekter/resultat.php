@@ -115,10 +115,10 @@ class resultat
     {
         $delstreng = '';
         foreach ($playerArray as $player) {
-           $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
-         ', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
-         //   $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
-           // ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
+            $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+                ', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
+         //  $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+         // ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
         };
         $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
         $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 . ' FROM kaerkis.resultat
@@ -149,6 +149,56 @@ class resultat
         }
 
     }
+
+
+
+
+ // hent resultat-tabell basert på spillere fra getPlayerHeaders
+    function getIts2($playerArray)
+    {
+        $delstreng = '';
+        foreach ($playerArray as $player) {
+     //   $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+      //', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
+            $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+                ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
+        };
+        $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
+        $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 . ' FROM kaerkis.resultat
+     INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
+     group by resomgref';
+        $stmt3 = $this->conn->prepare($query3);
+        $stmt3->execute();
+        $num3 = $stmt3->rowCount();
+        $colcount = $stmt3->columnCount(); // ************* nytt
+
+
+        if ($num3 > 0) {
+            $resultat3_arr = array();
+            $res_arr = array();
+            $resultat3_arr['resultat'] = array();
+            while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
+                extract($row3);
+                $itisit = $row3["resomgref"];           
+/*
+             $omgang_item=array(
+                'OmgangID' => $OmgangID,
+                'OmgangOpprettet' => $OmgangOpprettet
+            );
+                 */
+                array_push($resultat3_arr['resultat'], $row3);
+            }
+         //return $resultat3_arr;
+         //return $colcount;
+            return $itisit;
+        } else {
+            return false;
+        }
+
+    }
+
+
+
 
 
 // oppdater spillresultat

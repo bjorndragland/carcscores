@@ -13,30 +13,35 @@ var app1 = new Vue({
         showingAddSpiller: false,
         show: true,
         isActive: true,
+
         troll:
-        {
-            "spiller": {
-                1: {
-                    "SpillerID": "1",
-                    "SpillerFornavn": "Asgeir",
-                    "SpillerOmgang": 0,
-                    "SpillerResultat": 0
-
-                },
-                2: {
-                    "SpillerID": "2",
-                    "SpillerFornavn": "Bj\u00f8rn",
-                    "SpillerOmgang": 0,
-                    "SpillerResultat": 0
-
-                },
-                7: {
-                    "SpillerID": "7",
-                    "SpillerFornavn": "Terje",
-                    "SpillerOmgang": 0,
-                    "SpillerResultat": 0
-                }
-            }
+            [
+                [
+                    { id: "resomgref", verdi: "142" },
+                    { id: "omgangdato", verdi: "2017-11-23" },
+                    { id: "2", verdi: "123" },
+                    { id: "3", verdi: "210" }
+                ],
+                [
+                    { id: "resomgref", verdi: "143" },
+                    { id: "omgangdato", verdi: "2017-11-23" },
+                    { id: "2", verdi: "104" },
+                    { id: "3", verdi: "98" }
+                ]
+            ],
+        datanaa: {
+            "resultat": [{
+                "resomgref": "142",
+                "omgangdato": "2017-11-23",
+                "2": "118",
+                "3": "0"
+            }, {
+                "resomgref": "143",
+                "omgangdato": "2017-11-23",
+                "2": "155",
+                "3": "0",
+                "4": "0"
+            }],
         }
     },
 

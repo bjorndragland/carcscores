@@ -16,6 +16,7 @@ $resultat = new resultat($db);
 
 $spillerHeader = $resultat->getPlayerHeaders();
 $resultattabell = $resultat->getIts($spillerHeader);
+//$resultattabell = $resultat->getIts2($spillerHeader);
 echo json_encode($resultattabell);
 //echo json_encode($spillerHeader);
 

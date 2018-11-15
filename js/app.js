@@ -6,73 +6,15 @@ var app1 = new Vue({
         spiller: [],
         resultat: [],
         resultatToChange: {},
+        resultatToKeep: {},
         nesteOmgangID: 0,
         omgangDato: "",
         showingmodalAddOmgang: false,
         showingmodalChangeOmgang: false,
         showingAddSpiller: false,
         show: true,
-        isActive: true,
-        troll:
-            [
-                [{
-                    "id": "resomgref",
-                    "verdi": "142"
-                }, {
-                    "id": "omgangdato",
-                    "verdi": "2017-11-23"
-                }, {
-                    "id": "2",
-                    "verdi": "145"
-                }, {
-                    "id": "2",
-                    "verdi": "145"
-                }],
-                [{
-                    "id": "resomgref",
-                    "verdi": "142"
-                }, {
-                    "id": "omgangdato",
-                    "verdi": "2017-11-23"
-                }, {
-                    "id": "2",
-                    "verdi": "145"
-                }, {
-                    "id": "2",
-                    "verdi": "145"
-                }]
-            ],
-        troll2:
-            [
-                [
-                    { id: "resomgref", verdi: "142" },
-                    { id: "omgangdato", verdi: "2017-11-23" },
-                    { id: "2", verdi: "123" },
-                    { id: "3", verdi: "210" }
-                ],
-                [
-                    { id: "resomgref", verdi: "143" },
-                    { id: "omgangdato", verdi: "2017-11-23" },
-                    { id: "2", verdi: "104" },
-                    { id: "3", verdi: "98" }
-                ]
-            ],
-        datanaa: {
-            "resultat": [{
-                "resomgref": "142",
-                "omgangdato": "2017-11-23",
-                "2": "118",
-                "3": "0"
-            }, {
-                "resomgref": "143",
-                "omgangdato": "2017-11-23",
-                "2": "155",
-                "3": "0",
-                "4": "0"
-            }],
-        }
+        isActive: true
     },
-
 
 
     created:
@@ -101,19 +43,26 @@ var app1 = new Vue({
             var DateString = DateNow.getFullYear() + "-" + Maaned + "-" + Dag;
             //sett riktig datoformat for input
             this.omgangDato = DateString;
-            //console.log(DateString);
+        },
+
+        resetChange: function () {
+            // dersom avbrutt, nullstill ved å laste tabell på nytt
+            this.readComplexResultatViaREST();
+        },
+
+        slettResultat: function () {
+            alert("jajaja");
         },
 
         checkContent: function (resultatlinje) {
-            //console.log(resultatlinje);
             this.resultatToChange = resultatlinje;
+            //this.resultatToKeep = JSON.parse(JSON.stringify(this.resultatToChange));
             console.log();
         },
 
         readSpillerViaREST: function () {
             axios.get("http://localhost/bjornagain/carcscores/carcscores/spiller/read.php")
                 .then(response => { this.spiller = response.data.spiller })
-            //.then(response => console.log(this.spiller))
         },
 
         createSpillerViaREST: function (spillerNew) {
@@ -136,7 +85,6 @@ var app1 = new Vue({
         readResultatViaREST: function () {
             axios.get("http://localhost/bjornagain/carcscores/carcscores/resultat/read.php")
                 .then(response => { this.resultat = response.data.resultat })
-            //.then(response => console.log(response.data.resultat))
         },
 
         createResultatViaREST: function (resultatNew) {
@@ -197,6 +145,7 @@ var app1 = new Vue({
                 .then(response => { this.nesteOmgangID = (response.data.Auto_increment).toString() })
         },
     },
+
     computed: {
         spillerRes: function () {
             return this.spiller.map((sp) => {
@@ -205,10 +154,24 @@ var app1 = new Vue({
                 return sp
             })
         },
+
         omgangRes: function () {
+            return this.resultatToChange.slice(-1 * (this.resultatToChange.length - 2))
+        }/*,
 
-        }
+        omgangResKeep: function () {
+            return this.resultatToKeep.slice(-1 * (this.resultatToKeep.length - 2))
+        },*/
 
+        /*
+                lookUpSpiller: function () {
+                    for (i = 0; i < this.spiller.length; i++) {
+                        if (this.spiller[i].SpillerID == ressos.id) {
+                            return this.spiller[i].SpillerFornavn;
+                        }
+                    }
+                }
+        */
     }
 
 }

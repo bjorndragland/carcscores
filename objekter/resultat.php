@@ -87,6 +87,27 @@ class resultat
         }
     }
 
+    function deletemulti($omgdata)
+    // ********************************* skriv om ***************************************
+    {
+        $querystreng0 = '';
+        foreach ($omgdata as $spillerres) {
+            $querystreng0 = $querystreng0 . '(NULL,' . $spillerres->SpillerOmgang . ',' . $spillerres->SpillerID . ',' . $spillerres->SpillerResultat . '),';
+        }
+        $querystreng1 = substr($querystreng0, 0, (strlen($querystreng0) - 1));
+        $query4 = 'INSERT INTO resultat (ResultatID, ResOmgRef, ResSpillerRef, ResPoeng) VALUES' . $querystreng1 . '';
+        $stmt4 = $this->conn->prepare($query4);
+        if ($stmt4->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+// DELETE FROM `kaerkis`.`omgang` WHERE  `OmgangID`=176;
+// DELETE FROM `kaerkis`.`resultat` WHERE  `ResOmgRef`=176;
+
+    }
+
 
 
     // hent spillere til resultat-tabell
@@ -138,7 +159,6 @@ class resultat
 
                 $resomgidarray = array(
                     'ResOmgRef' => $row3
-                    //$row3
                 );
 
                 array_push($resultat3_arr['resultat'], $row3);
@@ -176,28 +196,22 @@ class resultat
             $res_arr = array();
             $resultat3_arr['resultat'] = array();
             $resultat4_arr = array();
+            $arren2 = array();
             while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
                 extract($row3);
-                $itisit = $row3["resomgref"];           
+                $itisit = $row3["resomgref"];
 
-                //array_push($resultat3_arr['resultat'], $row3);
                 array_push($resultat4_arr, $row3);
-                //$res_arr
+                $arren0 = array();
+                foreach ($row3 as $key => $value) {
+                    $arren1 = array("id" => $key, "verdi" => $value);
+                    array_push($arren0, $arren1);
+                }
+                array_push($arren2, $arren0);
             }
 
-            // for hver row:
-            $res9_arr = array("id" => "resomgref", "verdi" => "142"); // objekt 0
-            $res10_arr = array("id" => "omgangdato", "verdi" => "2017-11-23"); // objekt 1
-            $res6_arr = array("id" => "2", "verdi" => "145"); // objekt 2
-            // 3 ...
 
-            $resultat5_arr = array($res9_arr, $res10_arr, $res6_arr, $res6_arr); // array
-            $resultat7_arr = array($res9_arr, $res10_arr, $res6_arr, $res6_arr); // array
-            $resultat8_arr = array($resultat5_arr, $resultat7_arr); // array
-            $resultat13_arr = array("resultat" => $resultat8_arr); // objekt
-
-            return $resultat13_arr;
-            //return "hallo";
+            return array("resultat" => $arren2);
         } else {
             return false;
         }

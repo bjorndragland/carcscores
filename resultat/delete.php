@@ -15,5 +15,16 @@ include_once '../objekter/resultat.php';
 
 $database = new Database();
 $db = $database->getConnection();
+$resultat = new resultat($db);
+
+
+// get posted data
+$data = json_decode(file_get_contents('php://input'));
+
+$resultat->deleteomgang($data);
+
+$resultat->deleteresultat($data);
+
+//echo $data
 
 ?>

@@ -84,8 +84,8 @@
 
                     <hr>
 
-                    <button class="buttonEnter fright" @click="showingmodalChangeOmgang = false">Endre Omgang</button>
-                    <button class="buttonDelete fright" @click="showingmodalChangeOmgang = false, slettResultat()">Slett Omgang</button>
+                    <button class="buttonEnter fright" @click="showingmodalChangeOmgang = false, updateResultatViaREST()">Endre Omgang</button>
+                    <button class="buttonDelete fright" @click="showingmodalChangeOmgang = false, deleteResultatViaREST(resultatToChange[0].verdi)">Slett Omgang</button>
                     <button class="buttonCancel fright" @click="showingmodalChangeOmgang = false, resetChange()">Avbryt</button>
                     <div class="clear"></div>
                 </div>
@@ -166,10 +166,9 @@
                         <th>Dato</th>
                         <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
                     </tr>
-                    <!-- fyller inn data i hovedtabellen-->
+                    <!-- fyller inn data i hovedtabellen -->
                     <tr v-for="reslinje in resultat.slice().reverse()">
                         <td class="centerCell"><img src="filer/Edit_Icon.svg" width="16" height="16" @click="checkContent(reslinje); showingmodalChangeOmgang = true" /></td>
-                        <!--<td><button @click="this.alert(reslinje.resomgref)">klikk</button></td>-->
                         <td v-for="respos in reslinje">{{ respos.verdi }}</td>
                     </tr>
                 </table>

@@ -1,10 +1,4 @@
 <?php
-// ikke i bruk
-// required headers
-
-
-// ************************ skriv om ******************************
-
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=UTF-8');
@@ -28,7 +22,9 @@ $data = json_decode(file_get_contents('php://input'));
 //echo file_get_contents("php://input");
 
 //echo json_encode($data);
-$resultat->createmulti($data);
+//$resultat->createmulti($data);
+$resultat->updatemulti($data);
+
 
 
 // set product property values

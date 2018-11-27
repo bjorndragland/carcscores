@@ -50,8 +50,8 @@ var app1 = new Vue({
             this.readComplexResultatViaREST();
         },
 
-        slettResultat: function () {
-            alert("jajaja");
+        slettResultat: function (skalSlettes) {
+            alert(skalSlettes);
         },
 
         checkContent: function (resultatlinje) {
@@ -94,6 +94,26 @@ var app1 = new Vue({
             })
         },
 
+
+
+        updateResultatViaREST: function (resultatNew) {
+            axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/updatemulti.php", {
+                ResultatID: "22"
+            })
+        },
+
+
+        deleteResultatViaREST: function (resultatDelete) {
+            //alert(resultatDelete);
+            axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/delete.php", {
+                ResultatID: resultatDelete
+            })
+                .then(this.readComplexResultatViaREST())
+                // les siste omgangsID på nytt:
+                .then(this.readLastOmgangIDViaREST())
+        },
+
+
         inputOmgangResults: function () {
             // opprett omgang med dato fra dato-input
             axios.post("http://localhost/bjornagain/carcscores/carcscores/omgang/create.php", {
@@ -112,7 +132,6 @@ var app1 = new Vue({
                 .then(this.readComplexResultatViaREST())
                 // les siste omgangsID på nytt:
                 .then(this.readLastOmgangIDViaREST())
-
         },
 
         flashTableRow: function () {

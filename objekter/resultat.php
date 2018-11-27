@@ -87,25 +87,27 @@ class resultat
         }
     }
 
-    function deletemulti($omgdata)
-    // ********************************* skriv om ***************************************
+    function deleteomgang($omgdatadelete)
     {
-        $querystreng0 = '';
-        foreach ($omgdata as $spillerres) {
-            $querystreng0 = $querystreng0 . '(NULL,' . $spillerres->SpillerOmgang . ',' . $spillerres->SpillerID . ',' . $spillerres->SpillerResultat . '),';
-        }
-        $querystreng1 = substr($querystreng0, 0, (strlen($querystreng0) - 1));
-        $query4 = 'INSERT INTO resultat (ResultatID, ResOmgRef, ResSpillerRef, ResPoeng) VALUES' . $querystreng1 . '';
-        $stmt4 = $this->conn->prepare($query4);
-        if ($stmt4->execute()) {
+        $querystreng20 = 'DELETE FROM omgang WHERE OmgangID=' . $omgdatadelete->ResultatID;
+        $stmt20 = $this->conn->prepare($querystreng20);
+        if ($stmt20->execute()) {
             return true;
         } else {
             return false;
         }
+    }
 
-// DELETE FROM `kaerkis`.`omgang` WHERE  `OmgangID`=176;
-// DELETE FROM `kaerkis`.`resultat` WHERE  `ResOmgRef`=176;
+    function deleteresultat($resdatadelete)
+    {
+        $querystreng30 = 'DELETE FROM resultat WHERE ResOmgRef=' . $resdatadelete->ResultatID;
+        $stmt30 = $this->conn->prepare($querystreng30);
+        if ($stmt30->execute()) {
+            return true;
 
+        } else {
+            return false;
+        }
     }
 
 
@@ -222,16 +224,13 @@ class resultat
 
 
 // oppdater spillresultat
-    function update()
+    function updatemulti($data)
     {
-
+        echo json_encode($data);
     }
 
-// slett spillresultat
-    function delete()
-    {
 
-    }
+
 
 }
 

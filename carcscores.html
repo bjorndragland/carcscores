@@ -42,7 +42,8 @@
                     </div>
                     <hr>
                     <div>
-                        <button class="buttonEnter fright" @click="showingmodalAddOmgang = false; inputOmgangResults()">Legg til Resultat</button>
+                        <button class="buttonEnter fright" @click="showingmodalAddOmgang = false; inputOmgangResults()">Legg
+                            til Resultat</button>
                         <button class="buttonCancel fright" @click="showingmodalAddOmgang = false; nullStillSpiller()">Avbryt</button>
                         <div class="clear"></div>
                     </div>
@@ -56,22 +57,36 @@
             <div class="modalContainer">
                 <div class="modalHeading">
                     <p class="fleft">Registrer spiller</p>
-                    <button class="fright close" @click="showingmodalChangeOmgang = false">X</button>
+                    <button class="fright close" @click="showingmodalChangeOmgang = false, resetChange()">X</button>
                     <div class="clear"></div>
                 </div>
                 <div class="modalContent">
                     <p>{{resultatToChange}}</p>
+                    <div class="inputDiv">
+                        <label class="fleft"><b>Omgang ID</b></label>
+                        <p class="fright">{{ resultatToChange[0].verdi }}</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="inputDiv">
+                        <label for="OmgDato" class="fleft"><b>Dato</b></label>
+                        <input type="date" name="OmgDato" class="fright inputDate" v-model="resultatToChange[1].verdi">
+                        <div class="clear"></div>
+                    </div>
+                    <hr>
 
-                    <div class="inputDiv" v-for="(ressos, key) in resultatToChange">
-                        <p> {{ key }} </p>
+                    <!-- <div class="inputDiv" v-for="(ressos, key) in resultatToChange"> -->
+                    <div class="inputDiv" v-for="(ressos, key) in omgangRes">
+
+                        <label for="poeng" class="fleft"><b>{{ ressos.id }}</b></label>
+                        <input type="text" name="poeng" class="fright inputPoints" v-model="ressos.verdi">
                         <div class="clear"></div>
                     </div>
 
                     <hr>
 
-                    <button class="buttonEnter fright" @click="showingmodalChangeOmgang = false">Endre Omgang</button>
-                    <button class="buttonDelete fright" @click="showingmodalChangeOmgang = false">Slett Omgang</button>
-                    <button class="buttonCancel fright" @click="showingmodalChangeOmgang = false">Avbryt</button>
+                    <button class="buttonEnter fright" @click="showingmodalChangeOmgang = false, updateResultatViaREST()">Endre Omgang</button>
+                    <button class="buttonDelete fright" @click="showingmodalChangeOmgang = false, deleteResultatViaREST(resultatToChange[0].verdi)">Slett Omgang</button>
+                    <button class="buttonCancel fright" @click="showingmodalChangeOmgang = false, resetChange()">Avbryt</button>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -108,7 +123,15 @@
         <div class="wholepage">
 
             <div class="header">
-                <!--<p>tjoho</p>-->
+
+                <!-- <ul>
+                    <li v-for="item in troll">
+                        <div v-for="it in item">
+                            {{ it.verdi }}
+                        </div>
+                    </li>
+                </ul> -->
+
             </div>
 
             <div class="addOmgang">
@@ -143,11 +166,10 @@
                         <th>Dato</th>
                         <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
                     </tr>
-                    <!-- fyller inn data i hovedtabellen-->
+                    <!-- fyller inn data i hovedtabellen -->
                     <tr v-for="reslinje in resultat.slice().reverse()">
                         <td class="centerCell"><img src="filer/Edit_Icon.svg" width="16" height="16" @click="checkContent(reslinje); showingmodalChangeOmgang = true" /></td>
-                        <!--<td><button @click="this.alert(reslinje.resomgref)">klikk</button></td>-->
-                        <td v-for="respos in reslinje">{{ respos }}</td>
+                        <td v-for="respos in reslinje">{{ respos.verdi }}</td>
                     </tr>
                 </table>
 

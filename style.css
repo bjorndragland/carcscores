@@ -62,11 +62,10 @@ td, th{
 th{
     background:rgb(95, 95, 95);
 }
-
-/* tr:nth-child(2) {
+/*
+ tr:nth-child(2) {
     background: rgb(64, 138, 64);
 } */
-
 .active{
     background: red;
 }

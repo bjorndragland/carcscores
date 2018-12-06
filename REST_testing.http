@@ -25,6 +25,8 @@ GET http://localhost/bjornagain/carcscores/carcscores/resultat/readcomplex.php H
 content-type: application/json
 
 
+
+
 ### resultat create
 POST http://localhost/bjornagain/carcscores/carcscores/resultat/create.php HTTP/1.1
 content-type: application/json
@@ -32,6 +34,15 @@ content-type: application/json
     "ResultatID": "NULL",
     "ResOmgRef":"109",
     "ResSpillerRef":"3",
+    "ResPoeng":"163"
+}
+
+### resultat updatemulti
+POST http://localhost/bjornagain/carcscores/carcscores/resultat/updatemulti.php HTTP/1.1
+content-type: application/json
+
+{
+    "ResultatID": "123",
     "ResPoeng":"163"
 }
 

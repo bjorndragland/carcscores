@@ -7,7 +7,7 @@ class resultat
     private $conn;
     private $table_name = 'resultat';
  
-    // spiller attributter
+    // spillerattributter
     public $ResultatID;
     public $ResOmgangRef;
     public $ResSpillerRef;
@@ -87,6 +87,29 @@ class resultat
         }
     }
 
+    function deleteomgang($omgdatadelete)
+    {
+        $querystreng20 = 'DELETE FROM omgang WHERE OmgangID=' . $omgdatadelete->ResultatID;
+        $stmt20 = $this->conn->prepare($querystreng20);
+        if ($stmt20->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deleteresultat($resdatadelete)
+    {
+        $querystreng30 = 'DELETE FROM resultat WHERE ResOmgRef=' . $resdatadelete->ResultatID;
+        $stmt30 = $this->conn->prepare($querystreng30);
+        if ($stmt30->execute()) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
 
 
     // hent spillere til resultat-tabell
@@ -115,10 +138,10 @@ class resultat
     {
         $delstreng = '';
         foreach ($playerArray as $player) {
-           $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
-         ', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
-         //   $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
-           // ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
+            $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+                ', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
+         //  $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+         // ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
         };
         $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
         $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 . ' FROM kaerkis.resultat
@@ -138,7 +161,6 @@ class resultat
 
                 $resomgidarray = array(
                     'ResOmgRef' => $row3
-                    //$row3
                 );
 
                 array_push($resultat3_arr['resultat'], $row3);
@@ -147,21 +169,68 @@ class resultat
         } else {
             return false;
         }
-
     }
+
+
+
+
+    function getIts2($playerArray)
+    {
+        $delstreng = '';
+        foreach ($playerArray as $player) {
+     //   $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+      //', respoeng,0) ) AS ' . ($player->SpillerFornavn) . ', ';
+            $delstreng = $delstreng . 'SUM( IF(resspillerref = ' . ($player->SpillerID) .
+                ', respoeng,0) ) AS "' . ($player->SpillerID) . '", ';
+        };
+        $delstreng2 = substr($delstreng, 0, (strlen($delstreng) - 2));
+        $query3 = 'SELECT resultat.resomgref, omgang.omgangdato,' . $delstreng2 .
+            ' FROM kaerkis.resultat
+        INNER JOIN omgang ON resultat.resomgref = omgang.omgangID
+        group by resomgref';
+        $stmt3 = $this->conn->prepare($query3);
+        $stmt3->execute();
+        $num3 = $stmt3->rowCount();
+        $colcount = $stmt3->columnCount(); // ************* nytt
+
+        if ($num3 > 0) {
+            $resultat3_arr = array();
+            $res_arr = array();
+            $resultat3_arr['resultat'] = array();
+            $resultat4_arr = array();
+            $arren2 = array();
+            while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
+                extract($row3);
+                $itisit = $row3["resomgref"];
+
+                array_push($resultat4_arr, $row3);
+                $arren0 = array();
+                foreach ($row3 as $key => $value) {
+                    $arren1 = array("id" => $key, "verdi" => $value);
+                    array_push($arren0, $arren1);
+                }
+                array_push($arren2, $arren0);
+            }
+
+
+            return array("resultat" => $arren2);
+        } else {
+            return false;
+        }
+    }
+
+
+
 
 
 // oppdater spillresultat
-    function update()
+    function updatemulti($data)
     {
-
+        echo json_encode($data);
     }
 
-// slett spillresultat
-    function delete()
-    {
 
-    }
+
 
 }
 

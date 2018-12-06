@@ -7,7 +7,7 @@ class resultat
     private $conn;
     private $table_name = 'resultat';
  
-    // spiller attributter
+    // spillerattributter
     public $ResultatID;
     public $ResOmgangRef;
     public $ResSpillerRef;

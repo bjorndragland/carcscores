@@ -173,7 +173,7 @@ var app1 = new Vue({
             })
         },
         omgangRes: function () {
-
+// jaja
         }
 
     }

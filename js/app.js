@@ -103,7 +103,8 @@ var app1 = new Vue({
         // i bruk
         updateResultatViaREST: function (resultatNew) {
             axios.post("http://localhost/bjornagain/carcscores/carcscores/resultat/updatemulti.php", {
-                ResultatID: "22"
+                //ResultatID: "22"
+                ResultatID: resultatNew
             })
         },
 

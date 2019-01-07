@@ -45,6 +45,12 @@ body {
    /* background-color: rgb(55, 61, 45); */
 }
 
+.statistikk{
+    background-color: brown;
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+
 
 table {
     width:100%;

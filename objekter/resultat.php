@@ -173,7 +173,7 @@ class resultat
 
 
 
-
+    // denne er i bruk nå
     function getIts2($playerArray)
     {
         $delstreng = '';

@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="carcscores.ico" sizes="16x16" type="image/png">
 </head>
 
 
@@ -149,7 +150,7 @@
             </div>
 
             <div class="seeStatistics">
-                <button class="buttonCreate  fmiddle" @click="flashTableRow()">test shit</button>
+                <button class="buttonCreate  fmiddle" @click="testStuff()">test shit</button>
                 <!--<button class="buttonCreate  fmiddle" id="newOmgang" @click="showingmodalAddOmgang = true;" disabled=true>Statistikk</button>
                 <div class="clear"></div>-->
             </div>
@@ -164,7 +165,7 @@
                     <!-- fyller inn headere i hovedtabellen-->
                     <tr>
                         <th class="centerCell">Endre</th>
-                        <th>Omgang</th>
+                        <th>Omg</th>
                         <th>Dato</th>
                         <th v-for="person in spiller">{{ person.SpillerFornavn }}</th>
                     </tr>

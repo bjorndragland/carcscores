@@ -149,6 +149,10 @@ var app1 = new Vue({
 
         },
 
+        testStuff: function () {
+
+        },
+
         // i bruk
         nullStillSpiller: function () {
             return this.spiller.map((spi) => {
@@ -175,7 +179,7 @@ var app1 = new Vue({
             axios.get("http://localhost/bjornagain/carcscores/carcscores/omgang/readLastID.php")
                 .then(response => { this.nesteOmgangID = (response.data.Auto_increment).toString() })
         },
-        
+
         // under arbeid
         getStat1ViaRest: function () {
             axios.get("http://localhost/bjornagain/carcscores/carcscores/statistikk/plassering.php")

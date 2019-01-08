@@ -6,77 +6,76 @@
 }
 
 body {
-    background:rgb(61, 61, 61);
-    color:rgb(207, 206, 206);
+    background: rgb(61, 61, 61);
+    color: rgb(207, 206, 206);
 }
 
-.wholepage{
+.wholepage {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    grid-gap:5px;
+    grid-gap: 5px;
 }
 
-.header{
+.header {
     grid-column-start: 1;
     grid-column-end: 6;
-   /* background-color: #2196F3; */
+    /* background-color: #2196F3; */
 }
 
-
-.addOmgang{
-     grid-column-start: 2;
+.addOmgang {
+    grid-column-start: 2;
     grid-column-end: 3;
 }
 
-.addPlayer{
-       grid-column-start: 3;
+.addPlayer {
+    grid-column-start: 3;
     grid-column-end: 4;
 }
 
-.seeStatistics{
+.seeStatistics {
     grid-column-start: 4;
     grid-column-end: 5;
 }
 
-
-.Omgangstabell{
+.Omgangstabell {
     grid-column-start: 2;
     grid-column-end: 5;
-   /* background-color: rgb(55, 61, 45); */
+    /* background-color: rgb(55, 61, 45); */
 }
 
-.statistikk{
+.statistikk {
     background-color: brown;
     grid-column-start: 2;
     grid-column-end: 5;
 }
 
-
 table {
-    width:100%;
+    width: 100%;
     border: 1px solid white;
     border-collapse: collapse;
     text-align: left;
     margin-bottom: 30px;
 }
 
-td, th{
-    padding:5px;
+td, th {
+    padding: 5px;
     border: 1px solid rgb(110, 110, 110);
 }
 
-th{
-    background:rgb(95, 95, 95);
+th {
+    background: rgb(95, 95, 95);
 }
+
 /*
  tr:nth-child(2) {
     background: rgb(64, 138, 64);
 } */
-.active{
+
+.active {
     background: red;
 }
 
-.centerCell{
+.centerCell {
     text-align: center;
 }
 
@@ -97,7 +96,7 @@ th{
 .fmiddle {
     display: block;
     margin: auto;
-    padding:10px;
+    padding: 10px;
 }
 
 .clear {
@@ -124,7 +123,7 @@ h1 {
 .modalContainer {
     width: 350px;
     background: rgb(61, 61, 61);
-    color:white;
+    color: white;
     margin: auto;
     margin-top: 44px;
 }
@@ -141,7 +140,8 @@ h1 {
 }
 
 .close {
-    background: rgb(173, 64, 64);;
+    background: rgb(173, 64, 64);
+    ;
     padding: 3px 9px;
     border: none;
     color: white;
@@ -149,8 +149,8 @@ h1 {
 
 .buttonEnter {
     background: rgb(64, 138, 64);
-    margin-left:2px;
-    margin-right:2px;
+    margin-left: 2px;
+    margin-right: 2px;
     margin-top: 19px;
     margin-bottom: 9px;
     padding: 9px 15px;
@@ -160,8 +160,8 @@ h1 {
 
 .buttonCancel {
     background: rgb(173, 64, 64);
-    margin-left:2px;
-    margin-right:2px;
+    margin-left: 2px;
+    margin-right: 2px;
     margin-top: 19px;
     margin-bottom: 9px;
     padding: 9px 15px;
@@ -171,8 +171,8 @@ h1 {
 
 .buttonDelete {
     background: rgb(173, 153, 64);
-    margin-left:2px;
-    margin-right:2px;
+    margin-left: 2px;
+    margin-right: 2px;
     margin-top: 19px;
     margin-bottom: 9px;
     padding: 9px 15px;
@@ -192,22 +192,22 @@ h1 {
 }
 
 .inputDiv {
-    padding:6px 6px;
+    padding: 6px 6px;
 }
 
-.inputDate{
-    width:130px;
+.inputDate {
+    width: 130px;
 }
 
-.inputPoints{
-    width:50px;
+.inputPoints {
+    width: 50px;
 }
 
-.inputPlayer{
-    width:150px;
+.inputPlayer {
+    width: 150px;
 }
 
-.inputArea{
-    width:250px;
-    height:50px;
+.inputArea {
+    width: 250px;
+    height: 50px;
 }

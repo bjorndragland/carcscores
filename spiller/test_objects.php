@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$stringo = "puler";
+$stringo = "testos";
 
 $arr = array($stringo => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
 

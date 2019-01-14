@@ -38,7 +38,7 @@
                     <hr>
                     <div class="inputDiv" v-for="spiller in spiller">
                         <label for="poeng" class="fleft"><b>{{ spiller.SpillerFornavn }}</b></label>
-                        <input type="text" name="poeng" class="fright inputPoints" v-model="spiller.SpillerResultat">
+                        <input type="text" name="poeng" class="fright inputPoints" v-model="spiller.SpillerResultat" @focus="$event.target.select()">
                         <div class="clear"></div>
                     </div>
                     <hr>
@@ -79,7 +79,7 @@
                     <div class="inputDiv" v-for="(ressos, key) in omgangRes">
 
                         <label for="poeng" class="fleft"><b>{{ ressos.id }}</b></label>
-                        <input type="text" name="poeng" class="fright inputPoints" v-model="ressos.verdi">
+                        <input type="text" name="poeng" class="fright inputPoints" v-model="ressos.verdi" @focus="$event.target.select()">
                         <div class="clear"></div>
                     </div>
 

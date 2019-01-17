@@ -25,8 +25,6 @@ GET http://localhost/bjornagain/carcscores/carcscores/resultat/readcomplex.php H
 content-type: application/json
 
 
-
-
 ### resultat create
 POST http://localhost/bjornagain/carcscores/carcscores/resultat/create.php HTTP/1.1
 content-type: application/json
@@ -77,11 +75,7 @@ content-type: application/json
     "SpillerFornavn":"Testersen"
 }
 
-
-### test div andre ting
-GET https://min-api.cryptocompare.com/data/pricemulti?fsyms=ADA,XLM,XVG,BQX,ICX,BNB,BTC,ETH,OMG,XRB,KCS,SUB,LTC,NEO&tsyms=BTC,USD,NOK HTTP/1.1
+### statistikk hent resultatdata
+GET http://localhost/bjornagain/carcscores/carcscores/statistikk/plassering.php HTTP/1.1
 content-type: application/json
 
-### test div andre ting
-GET https://api.github.com/users/bjorndragland HTTP/1.1
-content-type: application/json

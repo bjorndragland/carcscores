@@ -49,7 +49,6 @@ if ($num > 0) {
 
 // samle opp vinnere:
 $omgang_arr = [];
-//$omgang_Score1 = [];
 $omgangstats = array('score1' => 0, 'spiller1' => 0);
 
 for ($x = 0; $x <= count($statistikk_arr) - 1; $x++) {
@@ -60,12 +59,16 @@ for ($x = 0; $x <= count($statistikk_arr) - 1; $x++) {
             $omgangstats['score1'] = $statistikk_arr[$x]['ResPoeng'];
             $omgangstats['spiller1'] = $statistikk_arr[$x]['ResSpillerRef'];
             $omgang_arr[$statistikk_arr[$x]['ResOmgRef']] = $omgangstats;
+
             //echo $statistikk_arr[$x]['ResOmgRef'];
             //echo '-';
             //echo $statistikk_arr[$x]['ResPoeng'];
             //echo ' ';
+
         } else {
+
             //echo 'lower ';
+
         };
 
     } else {

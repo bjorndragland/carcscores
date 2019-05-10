@@ -16,6 +16,7 @@ $statistikk = new statistikk($db);
 $stmt = $statistikk->plassering();
 $num = $stmt->rowCount();
 
+
 // check if more than 0 record found
 if ($num > 0) {
  
